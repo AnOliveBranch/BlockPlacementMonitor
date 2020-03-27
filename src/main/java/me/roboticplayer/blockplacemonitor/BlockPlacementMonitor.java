@@ -73,6 +73,8 @@ public class BlockPlacementMonitor extends JavaPlugin implements Listener {
 		for (String mat : config.getStringList("blocks")) {
 			if (Material.getMaterial(mat) != null)
 				blocked.add(Material.getMaterial(mat));
+			else
+				getLogger().info("Incorrect material: " + mat);
 		}
 	}
 
