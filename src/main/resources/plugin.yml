@@ -1,0 +1,16 @@
+name: BlockPlacementMonitor
+author: RoboticPlayer
+version: 1.0
+main: me.roboticplayer.blockplacemonitor.BlockPlacementMonitor
+api-version: 1.13
+
+permissions:
+  blockmonitor.*:
+    description: Access to all BlockMonitor functions
+    children:
+      blockmonitor.bypass: true
+      blockmonitor.notify: true
+  blockmonitor.bypass:
+    description: Your blocks won't be monitored
+  blockmonitor.notify:
+    description: You'll get notifications when players go past the limits
