@@ -8,7 +8,6 @@
 # %TIME%: The value of cooldownTime
 # %LOCATION%: The location of the block placed
 
-
 cooldownTime: 60
 maxPlacement: 10
 notifyMessage: "&7[&cBlockMonitor&7] &4%PLAYER% has placed %NUMBER% monitored blocks in the past %TIME% seconds. Most recent at %LOCATION%"

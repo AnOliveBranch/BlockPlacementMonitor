@@ -27,7 +27,7 @@ public class BlockPlacementMonitor extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
 		config = this.getConfig();
-		config.options().copyDefaults(true);
+		saveDefaultConfig();
 		trackerMap = new HashMap<UUID, Integer>();
 		clearTimer();
 		populateMaterials();
@@ -43,7 +43,6 @@ public class BlockPlacementMonitor extends JavaPlugin implements Listener {
 
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent e) {
-		getLogger().info(e.getBlock().getType().name());
 		Player p = e.getPlayer();
 		if (e.isCancelled())
 			return;
