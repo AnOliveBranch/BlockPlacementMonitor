@@ -48,25 +48,20 @@ public class BlockPlacementMonitor extends JavaPlugin implements Listener {
 			return;
 		if (p.hasPermission("blockmonitor.bypass"))
 			return;
-		for (Material mat : blocked) {
-			if (e.getBlock().getType() == mat) {
-				if (trackerMap.containsKey(p.getUniqueId()))
-					trackerMap.put(p.getUniqueId(), trackerMap.get(p.getUniqueId()) + 1);
-				else
-					trackerMap.put(p.getUniqueId(), 1);
+		if (blocked.contains(e.getBlock().getType())) {
+			if (trackerMap.containsKey(p.getUniqueId()))
+				trackerMap.put(p.getUniqueId(), trackerMap.get(p.getUniqueId()) + 1);
+			else
+				trackerMap.put(p.getUniqueId(), 1);
 
-				if (trackerMap.get(p.getUniqueId()) != null
-						&& trackerMap.get(p.getUniqueId()) > config.getInt("maxPlacement")) {
-					for (Player staff : getServer().getOnlinePlayers()) {
-						if (staff.hasPermission("blockmonitor.notify")) {
-							staff.sendMessage(notifyMessage(p, e.getBlock().getLocation()));
-						}
-					}
-					getLogger().info(notifyMessage(p, e.getBlock().getLocation()));
+			for (Player staff : getServer().getOnlinePlayers()) {
+				if (staff.hasPermission("blockmonitor.notify")) {
+					staff.sendMessage(notifyMessage(p, e.getBlock().getLocation()));
 				}
 			}
-		}
+			getLogger().info(notifyMessage(p, e.getBlock().getLocation()));
 
+		}
 	}
 
 	private void populateMaterials() {
