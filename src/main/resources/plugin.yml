@@ -1,6 +1,6 @@
 name: BlockPlacementMonitor
 author: RoboticPlayer
-version: 1.0
+version: 1.0.4
 main: me.roboticplayer.blockplacemonitor.BlockPlacementMonitor
 api-version: 1.13
 

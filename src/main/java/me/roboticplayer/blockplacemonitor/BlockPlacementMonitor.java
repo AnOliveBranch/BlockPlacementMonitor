@@ -44,6 +44,8 @@ public class BlockPlacementMonitor extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onBlockPlace(BlockPlaceEvent e) {
 		Player p = e.getPlayer();
+		int max = config.getInt("maxPlacement");
+		int remind = config.getInt("notifyReminderThreshold");
 		if (e.isCancelled())
 			return;
 		if (p.hasPermission("blockmonitor.bypass"))
@@ -54,14 +56,18 @@ public class BlockPlacementMonitor extends JavaPlugin implements Listener {
 			else
 				trackerMap.put(p.getUniqueId(), 1);
 
-			for (Player staff : getServer().getOnlinePlayers()) {
-				if (staff.hasPermission("blockmonitor.notify")) {
-					staff.sendMessage(notifyMessage(p, e.getBlock().getLocation()));
+			if (trackerMap.get(p.getUniqueId()) >= max) {
+				if (trackerMap.get(p.getUniqueId()) == max || (trackerMap.get(p.getUniqueId()) - max) % remind == 0) {
+					for (Player staff : getServer().getOnlinePlayers()) {
+						if (staff.hasPermission("blockmonitor.notify")) {
+							staff.sendMessage(notifyMessage(p, e.getBlock().getLocation()));
+						}
+					}
+					getLogger().info(notifyMessage(p, e.getBlock().getLocation()));
 				}
 			}
-			getLogger().info(notifyMessage(p, e.getBlock().getLocation()));
-
 		}
+
 	}
 
 	private void populateMaterials() {

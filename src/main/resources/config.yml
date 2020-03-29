@@ -1,5 +1,6 @@
 # cooldownTime: Time in seconds before the block placement counters are reset
 # maxPlacement: Max number of blocks that can be placed without triggering a notification
+# notifyReminderThreshold: Once maxPlacement has been reached, send another message each time after this many blocks
 # blocks: List of blocks (from Material enum) that are to be monitored. They will all be monitored together as one unit
 # notifyMessage: Message sent to players with blockmonitor.notify and the console when too many monitored blocks are placed.
 # Replacers:
@@ -10,6 +11,7 @@
 
 cooldownTime: 60
 maxPlacement: 10
+notifyReminderThreshold: 5
 notifyMessage: "&7[&cBlockMonitor&7] &4%PLAYER% has placed %NUMBER% monitored blocks in the past %TIME% seconds. Most recent at %LOCATION%"
 blocks:
   - PISTON
